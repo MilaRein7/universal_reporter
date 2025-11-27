@@ -1,0 +1,11 @@
+.venv/
+
+__pycache__/
+*.pyc
+
+devsecops_report.html
+reports/*.json
+reports/*.txt
+
+.DS_Store
+Thumbs.db
