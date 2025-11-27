@@ -1,0 +1,18 @@
+{
+  "alerts": [
+    {
+      "name": "SQL Injection",
+      "risk": "High",
+      "url": "http://example.com/login",
+      "description": "Potential SQL injection vulnerability in login form.",
+      "solution": "Use parameterized queries."
+    },
+    {
+      "name": "Cross-Site Scripting (XSS)",
+      "risk": "Medium",
+      "url": "http://example.com/search",
+      "description": "Reflected XSS detected in search parameter.",
+      "solution": "Escape user input."
+    }
+  ]
+}

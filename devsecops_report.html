@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>DevSecOps Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { margin-bottom: 5px; }
+        .summary { margin-bottom: 20px; }
+        .severity-CRITICAL { background-color: #ffb3b3; }
+        .severity-HIGH { background-color: #ffd1b3; }
+        .severity-MEDIUM { background-color: #fff0b3; }
+        .severity-LOW { background-color: #e0f7da; }
+        .severity-INFO { background-color: #e0f0ff; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 4px 8px; font-size: 13px; }
+        th { background-color: #f0f0f0; }
+        .filters { margin-bottom: 10px; }
+        .filters label { margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Отчёт DevSecOps</h1>
+    <p>Сгенерировано: 2025-11-27 17:18:21</p>
+
+    <div class="summary">
+        <h2>Сводка</h2>
+        <p>Всего проблем: <strong>14</strong></p>
+
+        <h3>По уровню серьёзности</h3>
+        <ul>
+        
+            <li>MEDIUM: 2</li>
+        
+            <li>LOW: 1</li>
+        
+            <li>INFO: 10</li>
+        
+            <li>HIGH: 1</li>
+        
+        </ul>
+
+        <h3>По инструментам</h3>
+        <ul>
+        
+            <li>bandit: 2</li>
+        
+            <li>Coverage: 1</li>
+        
+            <li>flake8: 9</li>
+        
+            <li>OWASP ZAP: 2</li>
+        
+        </ul>
+
+        <h3>По типу проверок</h3>
+        <ul>
+        
+            <li>SAST: 2</li>
+        
+            <li>Coverage: 1</li>
+        
+            <li>Lint: 9</li>
+        
+            <li>DAST: 2</li>
+        
+        </ul>
+    </div>
+
+    <div class="filters">
+        <label>Фильтр по уровню:
+            <select id="severityFilter" onchange="applyFilter()">
+                <option value="">Все</option>
+                <option value="CRITICAL">CRITICAL</option>
+                <option value="HIGH">HIGH</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="LOW">LOW</option>
+                <option value="INFO">INFO</option>
+            </select>
+        </label>
+    </div>
+
+    <table id="findingsTable">
+        <thead>
+            <tr>
+                <th>Severity</th>
+                <th>Tool</th>
+                <th>Type</th>
+                <th>File</th>
+                <th>Line</th>
+                <th>Message</th>
+                <th>Rule ID</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr class="severity-MEDIUM">
+                <td>MEDIUM</td>
+                <td>bandit</td>
+                <td>SAST</td>
+                <td>.\sample_code/bad_code.py</td>
+                <td>6</td>
+                <td>Use of possibly insecure function - consider using safer ast.literal_eval.</td>
+                <td>B307</td>
+                <td>
+                    
+                        <a href="https://bandit.readthedocs.io/en/1.9.2/blacklists/blacklist_calls.html#b307-eval" target="_blank">Подробнее</a>
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-LOW">
+                <td>LOW</td>
+                <td>bandit</td>
+                <td>SAST</td>
+                <td>.\sample_code/bad_code.py</td>
+                <td>8</td>
+                <td>Possible hardcoded password: &#39;super_secret_password&#39;</td>
+                <td>B105</td>
+                <td>
+                    
+                        <a href="https://bandit.readthedocs.io/en/1.9.2/plugins/b105_hardcoded_password_string.html" target="_blank">Подробнее</a>
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-INFO">
+                <td>INFO</td>
+                <td>Coverage</td>
+                <td>Coverage</td>
+                <td></td>
+                <td></td>
+                <td>Покрытие строк: 73.5%</td>
+                <td></td>
+                <td>
+                    
+                        -
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-INFO">
+                <td>INFO</td>
+                <td>flake8</td>
+                <td>Lint</td>
+                <td>[1msample_code\bad_code.py[m[36m</td>
+                <td></td>
+                <td>[1m[31mF401[m &#39;os&#39; imported but unused</td>
+                <td>[m</td>
+                <td>
+                    
+                        -
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-INFO">
+                <td>INFO</td>
+                <td>flake8</td>
+                <td>Lint</td>
+                <td>[1msample_code\bad_code.py[m[36m</td>
+                <td></td>
+                <td>[1m[31mW292[m no newline at end of file</td>
+                <td>[m</td>
+                <td>
+                    
+                        -
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-INFO">
+                <td>INFO</td>
+                <td>flake8</td>
+                <td>Lint</td>
+                <td>[1msample_code\style_issues.py[m[36m</td>
+                <td></td>
+                <td>[1m[31mF401[m &#39;os&#39; imported but unused</td>
+                <td>[m</td>
+                <td>
+                    
+                        -
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-INFO">
+                <td>INFO</td>
+                <td>flake8</td>
+                <td>Lint</td>
+                <td>[1msample_code\style_issues.py[m[36m</td>
+                <td></td>
+                <td>[1m[31mF401[m &#39;sys&#39; imported but unused</td>
+                <td>[m</td>
+                <td>
+                    
+                        -
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-INFO">
+                <td>INFO</td>
+                <td>flake8</td>
+                <td>Lint</td>
+                <td>[1msample_code\style_issues.py[m[36m</td>
+                <td></td>
+                <td>[1m[31mE401[m multiple imports on one line</td>
+                <td>[m</td>
+                <td>
+                    
+                        -
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-INFO">
+                <td>INFO</td>
+                <td>flake8</td>
+                <td>Lint</td>
+                <td>[1msample_code\style_issues.py[m[36m</td>
+                <td></td>
+                <td>[1m[31mE302[m expected 2 blank lines, found 1</td>
+                <td>[m</td>
+                <td>
+                    
+                        -
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-INFO">
+                <td>INFO</td>
+                <td>flake8</td>
+                <td>Lint</td>
+                <td>[1msample_code\style_issues.py[m[36m</td>
+                <td></td>
+                <td>[1m[31mE111[m indentation is not a multiple of 4</td>
+                <td>[m</td>
+                <td>
+                    
+                        -
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-INFO">
+                <td>INFO</td>
+                <td>flake8</td>
+                <td>Lint</td>
+                <td>[1msample_code\style_issues.py[m[36m</td>
+                <td></td>
+                <td>[1m[31mE302[m expected 2 blank lines, found 1</td>
+                <td>[m</td>
+                <td>
+                    
+                        -
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-INFO">
+                <td>INFO</td>
+                <td>flake8</td>
+                <td>Lint</td>
+                <td>[1msample_code\style_issues.py[m[36m</td>
+                <td></td>
+                <td>[1m[31mW292[m no newline at end of file</td>
+                <td>[m</td>
+                <td>
+                    
+                        -
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-HIGH">
+                <td>HIGH</td>
+                <td>OWASP ZAP</td>
+                <td>DAST</td>
+                <td>http://example.com/login</td>
+                <td></td>
+                <td>Potential SQL injection vulnerability in login form. Решение: Use parameterized queries.</td>
+                <td>SQL Injection</td>
+                <td>
+                    
+                        <a href="http://example.com/login" target="_blank">Подробнее</a>
+                    
+                </td>
+            </tr>
+        
+            <tr class="severity-MEDIUM">
+                <td>MEDIUM</td>
+                <td>OWASP ZAP</td>
+                <td>DAST</td>
+                <td>http://example.com/search</td>
+                <td></td>
+                <td>Reflected XSS detected in search parameter. Решение: Escape user input.</td>
+                <td>Cross-Site Scripting (XSS)</td>
+                <td>
+                    
+                        <a href="http://example.com/search" target="_blank">Подробнее</a>
+                    
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+
+    <script>
+        function applyFilter() {
+            var filter = document.getElementById('severityFilter').value;
+            var rows = document.querySelectorAll('#findingsTable tbody tr');
+
+            rows.forEach(function(row) {
+                var severity = row.children[0].innerText;
+                if (!filter || severity === filter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

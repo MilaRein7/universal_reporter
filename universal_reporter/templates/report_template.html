@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>DevSecOps Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { margin-bottom: 5px; }
+        .summary { margin-bottom: 20px; }
+        .severity-CRITICAL { background-color: #ffb3b3; }
+        .severity-HIGH { background-color: #ffd1b3; }
+        .severity-MEDIUM { background-color: #fff0b3; }
+        .severity-LOW { background-color: #e0f7da; }
+        .severity-INFO { background-color: #e0f0ff; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 4px 8px; font-size: 13px; }
+        th { background-color: #f0f0f0; }
+        .filters { margin-bottom: 10px; }
+        .filters label { margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Отчёт DevSecOps</h1>
+    <p>Сгенерировано: {{ generated_at }}</p>
+
+    <div class="summary">
+        <h2>Сводка</h2>
+        <p>Всего проблем: <strong>{{ summary.total }}</strong></p>
+
+        <h3>По уровню серьёзности</h3>
+        <ul>
+        {% for severity, count in summary.by_severity.items() %}
+            <li>{{ severity }}: {{ count }}</li>
+        {% endfor %}
+        </ul>
+
+        <h3>По инструментам</h3>
+        <ul>
+        {% for tool, count in summary.by_tool.items() %}
+            <li>{{ tool }}: {{ count }}</li>
+        {% endfor %}
+        </ul>
+
+        <h3>По типу проверок</h3>
+        <ul>
+        {% for check_type, count in summary.by_type.items() %}
+            <li>{{ check_type }}: {{ count }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div class="filters">
+        <label>Фильтр по уровню:
+            <select id="severityFilter" onchange="applyFilter()">
+                <option value="">Все</option>
+                <option value="CRITICAL">CRITICAL</option>
+                <option value="HIGH">HIGH</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="LOW">LOW</option>
+                <option value="INFO">INFO</option>
+            </select>
+        </label>
+    </div>
+
+    <table id="findingsTable">
+        <thead>
+            <tr>
+                <th>Severity</th>
+                <th>Tool</th>
+                <th>Type</th>
+                <th>File</th>
+                <th>Line</th>
+                <th>Message</th>
+                <th>Rule ID</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for f in findings %}
+            <tr class="severity-{{ f.severity }}">
+                <td>{{ f.severity }}</td>
+                <td>{{ f.tool }}</td>
+                <td>{{ f.check_type }}</td>
+                <td>{{ f.file or "" }}</td>
+                <td>{{ f.line or "" }}</td>
+                <td>{{ f.message }}</td>
+                <td>{{ f.rule_id or "" }}</td>
+                <td>
+                    {% if f.link %}
+                        <a href="{{ f.link }}" target="_blank">Подробнее</a>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function applyFilter() {
+            var filter = document.getElementById('severityFilter').value;
+            var rows = document.querySelectorAll('#findingsTable tbody tr');
+
+            rows.forEach(function(row) {
+                var severity = row.children[0].innerText;
+                if (!filter || severity === filter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

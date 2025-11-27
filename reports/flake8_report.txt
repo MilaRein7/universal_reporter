@@ -1,0 +1,9 @@
+[1msample_code\bad_code.py[m[36m:[m3[36m:[m1[36m:[m [1m[31mF401[m 'os' imported but unused
+[1msample_code\bad_code.py[m[36m:[m9[36m:[m32[36m:[m [1m[31mW292[m no newline at end of file
+[1msample_code\style_issues.py[m[36m:[m1[36m:[m1[36m:[m [1m[31mF401[m 'os' imported but unused
+[1msample_code\style_issues.py[m[36m:[m1[36m:[m1[36m:[m [1m[31mF401[m 'sys' imported but unused
+[1msample_code\style_issues.py[m[36m:[m1[36m:[m10[36m:[m [1m[31mE401[m multiple imports on one line
+[1msample_code\style_issues.py[m[36m:[m3[36m:[m1[36m:[m [1m[31mE302[m expected 2 blank lines, found 1
+[1msample_code\style_issues.py[m[36m:[m4[36m:[m3[36m:[m [1m[31mE111[m indentation is not a multiple of 4
+[1msample_code\style_issues.py[m[36m:[m6[36m:[m1[36m:[m [1m[31mE302[m expected 2 blank lines, found 1
+[1msample_code\style_issues.py[m[36m:[m7[36m:[m9[36m:[m [1m[31mW292[m no newline at end of file
